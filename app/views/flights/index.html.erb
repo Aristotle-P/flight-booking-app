@@ -1,0 +1,23 @@
+<title>Flights</title>
+
+<h1>Flights</h1>
+
+<%= form_tag(flights_path, method: :get) do %>
+  <%= text_field_tag :search, params[:search]%>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
+
+<% @flights.each do |flight| %>
+  <p>Flight date: </p>
+  <%= flight.date %>
+  <br>
+  <p>Flight duration: </p>
+  <%= flight.duration %>
+  <br>
+  <p>Departing airport: </p>
+  <%= flight.from_airport.name %>
+  <br>
+  <p>Arriving airport: </p>
+  <%= flight.to_airport.name %>
+  <br>
+<% end %>
