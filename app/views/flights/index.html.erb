@@ -2,9 +2,13 @@
 
 <h1>Flights</h1>
 
-<%= form_tag(flights_path, method: :get) do %>
-  <%= text_field_tag :search, params[:search]%>
-  <%= submit_tag 'Search', name: nil %>
+<%#= form_tag(flights_path, method: :get) do %>
+  <%#= text_field_tag :search, params[:search]%>
+  <%#= submit_tag 'Search', name: nil %>
+<%# end %>
+<%= form_for :search, method: :get do |f| %>
+  <%= f.label :departing_airport %>
+  <%= f.collection_select(:departing_airport, Airport.all, :id, :name) %>
 <% end %>
 
 <% @flights.each do |flight| %>

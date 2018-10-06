@@ -4,11 +4,8 @@ class FlightsController < ApplicationController
   end
 
   def index
-    if params[:search]
-      @flights = Flight.search(params[:search])
-    else
-      @flights = Flight.all
-    end
+    @flights = Flight.all
+    @airports = Airport.all
   end
 
   def show
