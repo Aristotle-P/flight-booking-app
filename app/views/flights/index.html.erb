@@ -9,19 +9,26 @@
 <%= form_for :search, method: :get do |f| %>
   <%= f.label :departing_airport %>
   <%= f.collection_select(:departing_airport, Airport.all, :id, :name) %>
+
+  <%= f.label :arriving_airport %>
+  <%= f.collection_select(:arriving_airport, Airport.all, :id, :name) %>
+
+  <%= f.label :passengers %>
+  <%= select_tag(:passengers, options_for_select([[1, 1], [2, 2], [3, 3], [4, 4]], 1)) %>
+
+  <%= f.label :flight_date %>
+  <%= f.collection_select(:flight_date, Flight.all, :flight_date, :flight_date_formatted) %>
+
+  <%= f.submit "Search", name: :nil %>
 <% end %>
 
-<% @flights.each do |flight| %>
-  <p>Flight date: </p>
-  <%= flight.date %>
-  <br>
-  <p>Flight duration: </p>
-  <%= flight.duration %>
-  <br>
-  <p>Departing airport: </p>
-  <%= flight.from_airport.name %>
-  <br>
-  <p>Arriving airport: </p>
-  <%= flight.to_airport.name %>
-  <br>
+<% if !@results.blank? %>
+  <% @results.each do |flight| %>
+    <%= flight.from_airport.name %>
+    <br>
+    <%= flight.to_airport.name %>
+    <br>
+    <%= flight.flight_date_formatted %>
+    <br>
+  <% end %>
 <% end %>

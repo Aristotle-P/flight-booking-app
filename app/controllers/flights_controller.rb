@@ -4,8 +4,11 @@ class FlightsController < ApplicationController
   end
 
   def index
-    @flights = Flight.all
-    @airports = Airport.all
+    unless params[:search].nil?
+      @results = Flight.where(from_airport: params[:search][:departing_airport],
+                              to_airport: params[:search][:arriving_airport],
+                              flight_date: DateTime.parse(params[:search][:flight_date])).all
+    end
   end
 
   def show

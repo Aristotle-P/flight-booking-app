@@ -2,8 +2,7 @@ class Flight < ApplicationRecord
   belongs_to :from_airport, class_name: "Airport"
   belongs_to :to_airport, class_name: "Airport"
 
-=begin  def self.search(search)
-    joins(:from_airport).where("date LIKE ? or airports.name LIKE ?", "%#{search}%", "%#{search}%")
+  def flight_date_formatted
+    flight_date.strftime("%m/%d/%Y")
   end
-=end
 end
