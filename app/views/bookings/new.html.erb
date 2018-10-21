@@ -1,0 +1,22 @@
+<div class="booking-form">
+  <%= form_for @flight do |f| %>
+    <%= f.label :departing_airport, "#{@flight.from_airport.name}" %>
+    <br>
+    <%= f.label :ariving_airport, "#{@flight.to_airport.name}" %>
+    <br>
+    <%= f.label :departing_time, "#{@flight.flight_date_formatted}" %>
+    <br>
+    <% @passengers_number.to_i.times do %>
+      <%= fields_for @passengers do |personal| %>
+        <%= personal.label :name %>
+        <%= personal.text_field %>
+        <%= personal.label :email %>
+        <%= personal.email_field %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+
+
+<%= debug(params) %>
